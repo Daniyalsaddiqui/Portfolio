@@ -30,12 +30,12 @@ export function Hero() {
         <LightPillar
           topColor="#5227FF"
           bottomColor="#FF9FFC"
-          intensity={0.4}
-          rotationSpeed={0.5}
-          glowAmount={0.001}
-          pillarWidth={5.0}
+          intensity={1.0}
+          rotationSpeed={1}
+          glowAmount={0.003}
+          pillarWidth={6.0}
           pillarHeight={0.1}
-          noiseIntensity={0.3}
+          noiseIntensity={0.5}
           pillarRotation={135} // Diagonal flow: top-right to bottom-left
           interactive={false}
           mixBlendMode="normal"
