@@ -1,14 +1,49 @@
-High-End Developer Portfolio – Next.js & Framer Motion
+# 🚀 Developer Portfolio
 
-A production-ready developer portfolio built using Next.js 14 (App Router), TypeScript, and Tailwind CSS, featuring carefully tuned Framer Motion animations.
+A modern, high-performance developer portfolio built to showcase my skills, projects, and professional experience as a **MERN Stack Developer**.  
+Designed with clean UI, smooth animations, and scalable architecture.
 
-The project emphasizes performance, clean architecture, reusable animation utilities, and responsive design.
-Focused on presenting full-stack MERN projects, experience timelines, and professional branding without unnecessary visual noise.
+## 🌐 Live Preview
+_(Add link here once deployed)_  
+Example: https://your-portfolio.vercel.app
 
-Highlights:
+---
 
-Scroll-triggered and hover animations
+## 🧑‍💻 About Me
 
-Optimized layout and Lighthouse-friendly structure
+I am a Full-Stack Developer with hands-on experience building scalable, real-time web applications using the **MERN stack**.  
+My focus is on performance, clean architecture, and user-centric design.
 
-Modular component architecture
+I enjoy working on:
+- Real-time systems
+- API design and backend logic
+- Modern frontend animations
+- Production-ready deployments
+
+
+## ✨ Features
+
+- Modern animated UI with Framer Motion
+- Responsive design (Mobile, Tablet, Desktop)
+- Scroll-based section animations
+- Project cards with Problem → Solution → Impact
+- Clean and readable code structure
+- Performance-optimized build
+
+
+## 📂 Project Structure
+
+├── components
+│ ├── layout
+│ ├── sections
+│ └── ui
+├── lib
+│ ├── motion.ts
+│ └── utils.ts
+├── public
+├── styles
+├── app
+└── README.md
+
+## 📂 Project Structure
+
