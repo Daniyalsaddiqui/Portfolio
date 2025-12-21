@@ -1,0 +1,151 @@
+@use "../../app/mixins" as g;
+
+.experience {
+  @include g.section-padding;
+  padding-left: 1.5rem; // Equivalent to px-6
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.inner {
+  @include g.container;
+}
+
+.header {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.fitContent {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2.25rem;   // Equivalent to text-4xl
+  font-weight: 800;      // Equivalent to font-extrabold
+  @media (min-width: g.$md) {
+    font-size: 3rem;     // Equivalent to text-5xl
+  }
+}
+
+.underlineWrapper {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+
+.underline {
+  height: 100%;
+  background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+}
+
+.timelineWrapper {
+  position: relative;
+  margin-top: 4rem;
+}
+
+.timelineTrack {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 9999px;
+  transform: translateX(-50%);
+
+  @media (min-width: g.$md) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.timelineLine {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #40ffaa, #4079ff, #40ffaa);
+  border-radius: inherit;
+  box-shadow: 0 0 15px rgba(64, 255, 170, 0.5);
+}
+
+.timeline {
+  position: relative;
+  z-index: 2;
+}
+
+.itemWrapper {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 100%;
+
+  @media (min-width: g.$md) {
+    width: 50%;
+    margin-bottom: 2rem;
+    
+    &.left {
+      align-self: flex-start;
+      padding-right: 4rem;
+      text-align: right;
+    }
+
+    &.right {
+      align-self: flex-end;
+      padding-left: 4rem;
+      text-align: left;
+      margin-left: 50%;
+    }
+  }
+}
+
+.dot {
+  position: absolute;
+  top: 1.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: var(--accent-primary);
+  border-radius: 9999px;
+  border: 3px solid #060010;
+  box-shadow: 0 0 10px rgba(64, 255, 170, 0.5);
+  z-index: 10;
+  left: 1rem;
+  transform: translateX(-50%);
+
+  @media (min-width: g.$md) {
+    top: 0; // Align exactly with the top edge of the card
+    left: 50%;
+    transform: translateX(-50%); // Only horizontal center
+
+    .itemWrapper.left & {
+      right: -0.5rem;
+      left: auto;
+    }
+
+    .itemWrapper.right & {
+      left: -0.5rem;
+      right: auto;
+    }
+  }
+}
+
+.mobileDot {
+  display: none;
+}
+
+.magicCardWrapper {
+  padding: 0 !important;
+  height: 100%;
+}
+
+.cardInner {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

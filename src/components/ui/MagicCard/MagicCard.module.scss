@@ -1,0 +1,95 @@
+@use "@/app/mixins" as g;
+
+.magicCard {
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  background: var(--background);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 200px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 10px 30px -10px rgba(0, 0, 0, 0.5),
+      0 0 20px var(--purple-glow);
+  }
+
+  &.borderGlow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px; // Thinner border glow
+    background: radial-gradient(
+      var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+      rgba(var(--glow-color-rgb, 132, 0, 255), calc(var(--glow-intensity) * 0.8)) 0%,
+      rgba(var(--glow-color-rgb, 132, 0, 255), calc(var(--glow-intensity) * 0.4)) 30%,
+      transparent 60%
+    );
+    border-radius: inherit;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 5;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: rgba(var(--glow-color-rgb, 132, 0, 255), 0.2);
+    border-radius: 50%;
+    z-index: -1;
+  }
+}
+
+.globalSpotlight {
+  position: fixed;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle,
+    rgba(var(--glow-color-rgb, 132, 0, 255), 0.15) 0%,
+    rgba(var(--glow-color-rgb, 132, 0, 255), 0.08) 15%,
+    rgba(var(--glow-color-rgb, 132, 0, 255), 0.04) 25%,
+    rgba(var(--glow-color-rgb, 132, 0, 255), 0.02) 40%,
+    rgba(var(--glow-color-rgb, 132, 0, 255), 0.01) 65%,
+    transparent 70%
+  );
+  z-index: 200;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+.magicGrid {
+  position: relative;
+  user-select: none;
+}
