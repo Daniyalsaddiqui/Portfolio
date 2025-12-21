@@ -20,7 +20,7 @@ const experiences = [
     company: "Software Allience",
     period: "2023 - 2024",
     description: "Developed responsive user interfaces and translated complex designs into functional React components. Collaborated closely with backend teams for API integration.",
-    highlights: ["UI/UX Optimization", "Component Architecture", "State Management","Api Integration", "Optimization", " "]
+    highlights: ["UI/UX Optimization", "Component Architecture", "State Management","Api Integration", "Optimization"]
   },
   {
     role: "Junior Backend Developer",
@@ -47,7 +47,7 @@ export function Experience() {
   });
 
   const width = useTransform(headerScroll, [0, 1], ["0%", "100%"]);
-  const timelineScaleY = useTransform(timelineScroll, [0, 1], [0, 1]);
+  const timelineScaleY = useTransform(timelineScroll, [0, 0.85], [0, 1]);
 
   return (
     <section id="experience" className={styles.experience} ref={containerRef}>

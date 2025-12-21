@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import { Navbar } from "@/components/layout/Navbar";
 import { Background } from "@/components/ui/Background";
-import { Footer } from "@/components/layout/Footer";
+// import { Footer } from "@/components/layout/Footer";
 import { LazyMotion, domAnimation } from "framer-motion";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 
@@ -39,7 +39,7 @@ export default function RootLayout({
             <main className="relative">
               {children}
             </main>
-            <Footer />
+            {/* <Footer /> */}
           </SmoothScroll>
         </LazyMotion>
       </body>

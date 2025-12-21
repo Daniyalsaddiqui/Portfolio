@@ -38,13 +38,22 @@ const projects = [
     live: "https://dev.showupmate.com/"
   },
   {
+    title: "Comparison Tools",
+    problem: "Compare products and ai tools which are available in the market.",
+    solution: "Built a webiste tht comparison  a Ai tools and products.",
+    impact: "Help the users to compare products and ai tools which one is best for them.",
+    tech: ["NestJs", "Automation", "TypeScript","PostgreSQL"],
+    github: "https://github.com/Daniyalsaddiqui",
+    live: "https://comparison.com/lander?oref=https%3A%2F%2Fwww.google.com%2F"
+  },
+  {
     title: "AI Learning Tool (Extension)",
     problem: "Information overload when learning new technical concepts online.",
     solution: "Chrome extension that uses AI to summarize documentation and link related resources.",
     impact: "Helping 500+ developers learn faster by condensing technical documentation.",
     tech: ["JavaScript", "OpenAI API", "Chrome API", "NestJs","TypeScript","PostgreSQL"],
     github: "https://github.com/Daniyalsaddiqui",
-    live: "#"
+    live: "https://ai-learning-tool.com/"
   },
   {
     title: "Real-time Blog Management System",
