@@ -1,32 +1,27 @@
 "use client";
 
-import { m, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { m, useReducedMotion } from "framer-motion";
 import { fadeIn, staggerContainer } from "@/lib/motion";
 import GradientText from "../ui/GradientText/GradientText";
 import styles from "./About.module.scss";
 
 export function About() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: headingRef,
-    offset: ["start 0.9", "center center"],
-  });
-
-  const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="about" className={styles.about} ref={containerRef}>
+    <section id="about" className={styles.about}>
       <m.div
-        variants={staggerContainer()}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        variants={shouldReduceMotion ? undefined : staggerContainer()}
+        initial={shouldReduceMotion ? undefined : "hidden"}
+        whileInView={shouldReduceMotion ? undefined : "show"}
+        viewport={shouldReduceMotion ? undefined : { once: true, margin: "-120px" }}
         className={styles.inner}
       >
         <div className={styles.grid}>
-          <m.div variants={fadeIn("right", 0.2)} className={styles.header} ref={headingRef}>
+          <m.div
+            variants={shouldReduceMotion ? undefined : fadeIn("right", 0.2)}
+            className={styles.header}
+          >
             <div className={styles.fitContent}>
               <h2 className={styles.title}>
                 <GradientText colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]} animationSpeed={3}>
@@ -34,12 +29,21 @@ export function About() {
                 </GradientText>
               </h2>
               <div className={styles.underlineWrapper}>
-                <m.div style={{ width }} className={styles.underline} />
+                <m.div
+                  className={styles.underline}
+                  initial={shouldReduceMotion ? undefined : { width: "0%" }}
+                  whileInView={shouldReduceMotion ? undefined : { width: "100%" }}
+                  viewport={shouldReduceMotion ? undefined : { once: true, margin: "-120px" }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.6, ease: "easeOut" }}
+                />
               </div>
             </div>
           </m.div>
 
-          <m.div variants={fadeIn("left", 0.3)} className={styles.content}>
+          <m.div
+            variants={shouldReduceMotion ? undefined : fadeIn("left", 0.3)}
+            className={styles.content}
+          >
             <p>
               With a year of real-world experience in the MERN stack, I specialize in bridging the gap between complex backend logic 
               and intuitive frontend experiences. My focus is on creating systems that are not just functional, but built to scale.

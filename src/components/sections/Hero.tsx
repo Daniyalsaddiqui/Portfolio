@@ -1,49 +1,60 @@
 "use client";
 
-import { useRef } from "react";
-import { m, useScroll, useTransform } from "framer-motion";
+import { m } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Github, Download, ChevronRight } from "lucide-react";
 import { Magnetic } from "../ui/Magnetic";
-import LightPillar from "../ui/LightPillar/LightPillar";
+import dynamic from "next/dynamic";
 import GradientText from "../ui/GradientText/GradientText";
 import { CONFIG } from "@/lib/config";
 import styles from "./Hero.module.scss";
+import Image from "next/image";
+
+const LightPillar = dynamic(() => import("../ui/LightPillar/LightPillar"), {
+  ssr: false,
+});
 
 export function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
+  const [showBackground, setShowBackground] = useState(false);
 
-  // Scroll effect for the header underline
-  const underlineWidth = useTransform(scrollYProgress, [0, 0.4], ["0%", "100%"]);
-  
-  // Parallax / Fade effects for smoothness
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 1, 0]);
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const run = () => setShowBackground(true);
+
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(run);
+    } else {
+      setTimeout(run, 0);
+    }
+  }, []);
 
   return (
-    <section className={styles.hero} ref={containerRef}>
+    <section className={styles.hero}>
       {/* LightPillar Background */}
-      <div className={styles.pillarBg}>
-        <LightPillar
-          topColor="#5227FF"
-          bottomColor="#FF9FFC"
-          intensity={1.0}
-          rotationSpeed={1}
-          glowAmount={0.003}
-          pillarWidth={6.0}
-          pillarHeight={0.1}
-          noiseIntensity={0.5}
-          pillarRotation={135} // Diagonal flow: top-right to bottom-left
-          interactive={false}
-          mixBlendMode="normal"
-        />
-      </div>
+      {showBackground && (
+        <div className={styles.pillarBg}>
+          <LightPillar
+            topColor="#5227FF"
+            bottomColor="#FF9FFC"
+            intensity={1.0}
+            rotationSpeed={1}
+            glowAmount={0.003}
+            pillarWidth={6.0}
+            pillarHeight={0.1}
+            noiseIntensity={0.5}
+            pillarRotation={135} // Diagonal flow: top-right to bottom-left
+            interactive={false}
+            mixBlendMode="normal"
+          />
+        </div>
+      )}
 
       <m.div 
-        style={{ opacity: contentOpacity }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-120px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className={styles.inner}
       >
         {/* Left Column: Text Content */}
@@ -51,28 +62,27 @@ export function Hero() {
           <div className={styles.headingWrapper}>
             <div className={styles.textGlow} />
             <div className={styles.fitContent}>
-              <m.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className={styles.title}
-              >
+              <h1 className={styles.title}>
                 <GradientText colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]} animationSpeed={3}>
                   DANIYAL SADDIQUI
                 </GradientText>
-              </m.h1>
+              </h1>
               <div className={styles.underlineTrack}>
                 <m.div 
-                  style={{ width: underlineWidth }} 
+                  initial={{ width: "0%" }}
+                  whileInView={{ width: "100%" }}
+                  viewport={{ once: true, margin: "-120px" }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                   className={styles.scrollUnderline} 
                 />
               </div>
             </div>
             
             <m.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-120px" }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
               className={styles.subtitle}
             >
               Full-Stack Developer with 1+ year of professional experience crafting <br />
@@ -82,9 +92,10 @@ export function Hero() {
 
           {/* Actions */}
           <m.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
             className={styles.actions}
           >
             <Magnetic>
@@ -105,26 +116,27 @@ export function Hero() {
         {/* Right Column: Redesigned Geometric Portrait Area */}
         <m.div 
           className={styles.visualContainer}
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {/* Abstract Layering Shapes */}
           <div className={styles.abstractCircle1} />
           <div className={styles.abstractCircle2} />
           <div className={styles.abstractArc} />
 
-          <m.div 
-            style={{ y: imageY }}
-            className={styles.circleFrame}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
+          <div className={styles.circleFrame}>
+            <Image 
               src={CONFIG.HERO_IMAGE} 
               alt="Profile" 
               className={styles.portrait}
+              width={400}
+              height={400}
+              priority
+              fetchPriority="high"
             />
-          </m.div>
+          </div>
 
           
         </m.div>

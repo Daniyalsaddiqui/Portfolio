@@ -43,6 +43,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
   const mouseRef = useRef(new THREE.Vector2(0, 0));
   const timeRef = useRef(0);
   const [webGLSupported, setWebGLSupported] = useState(true);
+  const stopTimeoutRef = useRef<number | null>(null);
 
   // Check WebGL support
   useEffect(() => {
@@ -292,6 +293,14 @@ const LightPillar: React.FC<LightPillarProps> = ({
     };
     rafRef.current = requestAnimationFrame(animate);
 
+    // Stop animation after initial showcase to avoid continuous GPU use
+    stopTimeoutRef.current = window.setTimeout(() => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+    }, 8000);
+
     // Handle resize with debouncing
     let resizeTimeout: number | null = null;
     const handleResize = () => {
@@ -318,6 +327,9 @@ const LightPillar: React.FC<LightPillarProps> = ({
       }
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
+      }
+      if (stopTimeoutRef.current) {
+        clearTimeout(stopTimeoutRef.current);
       }
       if (rendererRef.current) {
         rendererRef.current.dispose();

@@ -95,9 +95,9 @@ body {
 }
 
 .animate-pulse-primary {
-  animation: pulse-primary 10s infinite ease-in-out;
+  animation: pulse-primary 10s ease-in-out forwards;
 }
 
 .animate-pulse-secondary {
-  animation: pulse-secondary 15s infinite ease-in-out;
+  animation: pulse-secondary 15s ease-in-out forwards;
 }

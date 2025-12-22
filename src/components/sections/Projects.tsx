@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { m, useScroll, useTransform } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { fadeIn, staggerContainer } from "@/lib/motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Magnetic } from "../ui/Magnetic";
@@ -67,28 +66,21 @@ const projects = [
 ];
 
 export function Projects() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: headingRef,
-    offset: ["start 0.9", "center center"],
-  });
-
-  const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="projects" className={styles.projects} ref={containerRef}>
+    <section id="projects" className={styles.projects}>
       <m.div
-        variants={staggerContainer()}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        variants={shouldReduceMotion ? undefined : staggerContainer()}
+        initial={shouldReduceMotion ? undefined : "hidden"}
+        whileInView={shouldReduceMotion ? undefined : "show"}
+        viewport={shouldReduceMotion ? undefined : { once: true, margin: "-120px" }}
         className={styles.inner}
       >
-        <div className={styles.header} ref={headingRef}>
+        <div className={styles.header}>
           <div className={styles.fitContent}>
             <m.h2 
-              variants={fadeIn("up", 0.1)}
+              variants={shouldReduceMotion ? undefined : fadeIn("up", 0.1)}
               className={styles.title}
             >
               <GradientText colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]} animationSpeed={3}>
@@ -96,7 +88,13 @@ export function Projects() {
               </GradientText>
             </m.h2>
             <div className={styles.underlineWrapper}>
-              <m.div style={{ width }} className={styles.underline} />
+              <m.div
+                className={styles.underline}
+                initial={shouldReduceMotion ? undefined : { width: "0%" }}
+                whileInView={shouldReduceMotion ? undefined : { width: "100%" }}
+                viewport={shouldReduceMotion ? undefined : { once: true, margin: "-120px" }}
+                transition={shouldReduceMotion ? undefined : { duration: 0.6, ease: "easeOut" }}
+              />
             </div>
           </div>
         </div>
@@ -105,7 +103,7 @@ export function Projects() {
           {projects.map((project, i) => (
             <m.div
               key={project.title}
-              variants={fadeIn("up", 0.2 * (i % 2 === 0 ? 1 : 1.5))}
+              variants={shouldReduceMotion ? undefined : fadeIn("up", 0.2 * (i % 2 === 0 ? 1 : 1.5))}
               className={styles.cardContainer}
             >
               <MagicCard className={styles.magicCardWrapper} borderGlow={true}>
