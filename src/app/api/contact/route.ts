@@ -2,30 +2,41 @@ import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-    try {
-        const { name, email, message } = await req.json();
+  try {
+    const { name, email, message } = await req.json();
 
-        if (!name || !email || !message) {
-            return NextResponse.json(
-                { error: "Missing fields" },
-                { status: 400 }
-            );
-        }
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: "Missing fields" },
+        { status: 400 }
+      );
+    }
 
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: "m.daniyalsaddiqui@gmail.com",
-                pass: "ntuu sdrh exds gcpo",
-            },
-        });
+    const user = 'm.daniyalsaddiqui@gmail.com';
+    const pass = process.env.EMAIL_PASS;
 
-        await transporter.sendMail({
-            from: `"Portfolio Contact" <m.daniyalsaddiqui@gmail.com>`,
-            to: "m.daniyalsaddiqui@gmail.com",
-            replyTo: email,
-            subject: `New message from ${name}`,
-            html: `
+    if (!user || !pass) {
+      console.error("Email credentials are not set in environment variables.");
+      return NextResponse.json(
+        { error: "Email service is not configured. Please try again later." },
+        { status: 500 }
+      );
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user,
+        pass,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"Portfolio Contact" <${user}>`,
+      to: user,
+      replyTo: email,
+      subject: `New message from ${name}`,
+      html: `
         <div style="font-family: sans-serif; padding: 20px; color: #333;">
           <h2 style="color: #6366f1;">New message from your portfolio</h2>
           <p><strong>Name:</strong> ${name}</p>
@@ -36,14 +47,14 @@ export async function POST(req: Request) {
           </div>
         </div>
       `,
-        });
+    });
 
-        return NextResponse.json({ success: true });
-    } catch (err: any) {
-        console.error("Email error:", err);
-        return NextResponse.json(
-            { error: "Email failed to send. Please try again later." },
-            { status: 500 }
-        );
-    }
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Email error:", err);
+    return NextResponse.json(
+      { error: "Email failed to send. Please try again later." },
+      { status: 500 }
+    );
+  }
 }
