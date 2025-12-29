@@ -18,11 +18,43 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
+  const validateForm = (): boolean => {
+    const errors: Record<string, string> = {};
+    
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    } else if (formData.name.trim().length < 2) {
+      errors.name = "Name must be at least 2 characters";
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+    
+    if (!formData.message.trim()) {
+      errors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      errors.message = "Message must be at least 10 characters";
+    }
+    
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setError(null);
+    setFieldErrors({});
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsSubmitting(true);
     
     try {
       const res = await fetch("/api/contact", {
@@ -34,6 +66,7 @@ export function Contact() {
       if (res.ok) {
         setIsSuccess(true);
         setFormData({ name: "", email: "", message: "" });
+        setFieldErrors({});
         // Reset success after 5 seconds
         setTimeout(() => setIsSuccess(false), 5000);
       } else {
@@ -111,7 +144,14 @@ export function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   autoComplete="name"
+                  aria-invalid={!!fieldErrors.name}
+                  aria-describedby={fieldErrors.name ? "name-error" : undefined}
                 />
+                {fieldErrors.name && (
+                  <span id="name-error" className="text-sm text-rose-500 mt-1" role="alert">
+                    {fieldErrors.name}
+                  </span>
+                )}
               </LabelInputContainer>
 
               <LabelInputContainer>
@@ -124,7 +164,14 @@ export function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   autoComplete="email"
+                  aria-invalid={!!fieldErrors.email}
+                  aria-describedby={fieldErrors.email ? "email-error" : undefined}
                 />
+                {fieldErrors.email && (
+                  <span id="email-error" className="text-sm text-rose-500 mt-1" role="alert">
+                    {fieldErrors.email}
+                  </span>
+                )}
               </LabelInputContainer>
 
               <LabelInputContainer>
@@ -137,7 +184,14 @@ export function Contact() {
                   required 
                   value={formData.message}
                   onChange={handleChange}
+                  aria-invalid={!!fieldErrors.message}
+                  aria-describedby={fieldErrors.message ? "message-error" : undefined}
                 />
+                {fieldErrors.message && (
+                  <span id="message-error" className="text-sm text-rose-500 mt-1" role="alert">
+                    {fieldErrors.message}
+                  </span>
+                )}
               </LabelInputContainer>
 
               {error && (
@@ -158,6 +212,7 @@ export function Contact() {
                 )}
                 type="submit"
                 disabled={isSubmitting || isSuccess}
+                aria-label="Send message"
               >
                 <AnimatePresence mode="wait">
                   {isSuccess ? (

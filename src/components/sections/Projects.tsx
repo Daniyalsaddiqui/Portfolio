@@ -74,7 +74,7 @@ export function Projects() {
         variants={shouldReduceMotion ? undefined : staggerContainer()}
         initial={shouldReduceMotion ? undefined : "hidden"}
         whileInView={shouldReduceMotion ? undefined : "show"}
-        viewport={shouldReduceMotion ? undefined : { once: true, margin: "-120px" }}
+        viewport={shouldReduceMotion ? undefined : { once: true, margin: "-50px" }}
         className={styles.inner}
       >
         <div className={styles.header}>
@@ -92,7 +92,7 @@ export function Projects() {
                 className={styles.underline}
                 initial={shouldReduceMotion ? undefined : { width: "0%" }}
                 whileInView={shouldReduceMotion ? undefined : { width: "100%" }}
-                viewport={shouldReduceMotion ? undefined : { once: true, margin: "-120px" }}
+                viewport={shouldReduceMotion ? undefined : { once: false, margin: "-50px", amount: 0.3 }}
                 transition={shouldReduceMotion ? undefined : { duration: 0.6, ease: "easeOut" }}
               />
             </div>

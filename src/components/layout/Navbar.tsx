@@ -41,7 +41,7 @@ export function Navbar() {
           animate={{ opacity: 1, x: 0 }}
           className={styles.logoWrapper}
         >
-          <a href="#" className={styles.logo}>
+          <a href="#" aria-label="Home" className={styles.logo}>
             DS<span className={styles.logoDot} />
           </a>
         </m.div>
@@ -62,12 +62,12 @@ export function Navbar() {
           ))}
           <div className={styles.socialsWrapper}>
             <Magnetic>
-              <a href="https://github.com" target="_blank" className={styles.socialLink}>
+              <a href={CONFIG.GITHUB} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className={styles.socialLink}>
                 <Github size={20} />
               </a>
             </Magnetic>
             <Magnetic>
-              <a href={CONFIG.LINKEDIN} target="_blank" className={styles.socialLink}>
+              <a href={CONFIG.LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className={styles.socialLink}>
                 <Linkedin size={20} />
               </a>
             </Magnetic>
@@ -76,6 +76,7 @@ export function Navbar() {
                 href={CONFIG.RESUME_URL} 
                 className={styles.cvButton}
                 download
+                aria-label="Download Resume"
               >
                 <Download size={16} />
                 <span>Resume</span>
@@ -88,6 +89,8 @@ export function Navbar() {
         <button
           className={styles.mobileMenuToggle}
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -116,8 +119,8 @@ export function Navbar() {
                 ))}
               </div>
               <div className={styles.mobileSocials}>
-                <a href="https://github.com" target="_blank"><Github size={24} /></a>
-                <a href="https://linkedin.com" target="_blank"><Linkedin size={24} /></a>
+                <a href={CONFIG.GITHUB} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><Github size={24} /></a>
+                <a href={CONFIG.LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><Linkedin size={24} /></a>
               </div>
             </div>
           </m.div>

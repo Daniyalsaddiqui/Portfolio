@@ -22,22 +22,24 @@ export function Footer() {
 
         <div className={styles.socials}>
           <Magnetic>
-            <a href={CONFIG.GITHUB} target="_blank" className={styles.socialIcon}>
+            <a href={CONFIG.GITHUB} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className={styles.socialIcon}>
               <Github size={20} />
             </a>
           </Magnetic>
           <Magnetic>
-            <a href={CONFIG.LINKEDIN} target="_blank" className={styles.socialIcon}>
+            <a href={CONFIG.LINKEDIN} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className={styles.socialIcon}>
               <Linkedin size={20} />
             </a>
           </Magnetic>
+          {CONFIG.TWITTER !== "https://twitter.com/yourusername" && (
+            <Magnetic>
+              <a href={CONFIG.TWITTER} target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile" className={styles.socialIcon}>
+                <Twitter size={20} />
+              </a>
+            </Magnetic>
+          )}
           <Magnetic>
-            <a href={CONFIG.TWITTER} target="_blank" className={styles.socialIcon}>
-              <Twitter size={20} />
-            </a>
-          </Magnetic>
-          <Magnetic>
-            <a href={`mailto:${CONFIG.EMAIL}`} className={styles.socialIcon}>
+            <a href={`mailto:${CONFIG.EMAIL}`} aria-label="Send Email" className={styles.socialIcon}>
               <Mail size={20} />
             </a>
           </Magnetic>

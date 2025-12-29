@@ -53,7 +53,7 @@ export function Hero() {
       <m.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-120px" }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={styles.inner}
       >
@@ -71,7 +71,7 @@ export function Hero() {
                 <m.div 
                   initial={{ width: "0%" }}
                   whileInView={{ width: "100%" }}
-                  viewport={{ once: true, margin: "-120px" }}
+                  viewport={{ once: false, margin: "-50px", amount: 0.3 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   className={styles.scrollUnderline} 
                 />
@@ -99,9 +99,9 @@ export function Hero() {
             className={styles.actions}
           >
             <Magnetic>
-              <a href="#projects" className={styles.primaryBtn}>
+              <a href="#projects" className={styles.primaryBtn} aria-label="View Projects">
                 <span>View Projects</span>
-                <ChevronRight size={18} />
+                <ChevronRight size={18} aria-hidden="true" />
               </a>
             </Magnetic>
             {/* <Magnetic>
