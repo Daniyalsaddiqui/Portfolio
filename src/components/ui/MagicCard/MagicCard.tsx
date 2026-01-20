@@ -5,10 +5,11 @@ import { gsap } from 'gsap';
 import { cn } from '@/lib/utils';
 import styles from './MagicCard.module.scss';
 
-const DEFAULT_PARTICLE_COUNT = 12;
+const DEFAULT_PARTICLE_COUNT = 6;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
 const DEFAULT_GLOW_COLOR = '132, 0, 255';
 const MOBILE_BREAKPOINT = 768;
+const MOUSE_THROTTLE_MS = 33; // ~30fps for mouse events
 
 interface MagicCardProps {
   children: React.ReactNode;
@@ -147,7 +148,12 @@ export const MagicCard: React.FC<MagicCardProps> = ({
       });
     };
 
+    let lastMouseMove = 0;
     const handleMouseMove = (e: MouseEvent) => {
+      const now = performance.now();
+      if (now - lastMouseMove < MOUSE_THROTTLE_MS) return;
+      lastMouseMove = now;
+
       const rect = el.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -238,6 +244,8 @@ export const MagicCard: React.FC<MagicCardProps> = ({
       )}
       style={{ 
         '--glow-color-rgb': glowColor,
+        willChange: 'transform',
+        transform: 'translateZ(0)',
       } as React.CSSProperties}
     >
       {children}

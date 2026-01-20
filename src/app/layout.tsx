@@ -18,23 +18,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Daniyal Saddiqui | MERN Stack Developer",
-  description: "Full-Stack Developer with 1+ year of professional experience crafting high-performance, user-centric web solutions that solve real-world problems.",
-  keywords: ["MERN Stack Developer", "Full Stack Developer", "React Developer", "Node.js Developer", "Web Developer", "Portfolio"],
+  title: "Daniyal Saddiqui | MERN Stack Developer & AI Automation Specialist",
+  description: "Full-Stack Developer & AI Automation Specialist with 1+ year of experience in MERN stack development and intelligent workflow automation using n8n and make.com.",
+  keywords: ["MERN Stack Developer", "AI Automation", "Full Stack Developer", "React Developer", "Node.js Developer", "Web Developer", "n8n", "make.com", "Workflow Automation", "Portfolio"],
   authors: [{ name: "Daniyal Saddiqui" }],
   creator: "Daniyal Saddiqui",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-portfolio.vercel.app",
-    title: "Daniyal Saddiqui | MERN Stack Developer",
-    description: "Full-Stack Developer with 1+ year of professional experience crafting high-performance, user-centric web solutions.",
+    url: "https://fastidious-zuccutto-b5453e.netlify.app/",
+    title: "Daniyal Saddiqui | MERN Stack Developer & AI Automation Specialist",
+    description: "Full-Stack Developer & AI Automation Specialist building scalable web solutions and intelligent automation workflows.",
     siteName: "Daniyal Saddiqui Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Daniyal Saddiqui | MERN Stack Developer",
-    description: "Full-Stack Developer with 1+ year of professional experience crafting high-performance, user-centric web solutions.",
+    title: "Daniyal Saddiqui | MERN Stack Developer & AI Automation Specialist",
+    description: "Full-Stack Developer & AI Automation Specialist building scalable web solutions and intelligent automation workflows.",
     creator: "@yourusername",
   },
   robots: {
@@ -63,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://your-portfolio.vercel.app" />
+        <link rel="canonical" href="https://fastidious-zuccutto-b5453e.netlify.app/" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

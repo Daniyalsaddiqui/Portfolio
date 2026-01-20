@@ -112,7 +112,17 @@ export function Navbar() {
                     key={link.name}
                     href={link.href}
                     className={styles.mobileNavLink}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      // Small delay to allow menu close animation
+                      setTimeout(() => {
+                        document.querySelector(link.href)?.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'start'
+                        });
+                      }, 300);
+                    }}
                   >
                     {link.name}
                   </a>

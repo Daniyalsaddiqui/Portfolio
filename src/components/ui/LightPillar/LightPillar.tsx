@@ -44,6 +44,8 @@ const LightPillar: React.FC<LightPillarProps> = ({
   const timeRef = useRef(0);
   const [webGLSupported, setWebGLSupported] = useState(true);
   const stopTimeoutRef = useRef<number | null>(null);
+  const isVisibleRef = useRef(true);
+  const isTabFocusedRef = useRef(true);
 
   // Check WebGL support
   useEffect(() => {
@@ -186,7 +188,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
 
         vec3 color = vec3(0.0);
         
-        for(float i = 0.0; i < 100.0; i++) {
+        for(float i = 0.0; i < 50.0; i++) {
           vec3 pos = origin + direction * depth;
           pos.xz *= rotX;
 
@@ -272,14 +274,20 @@ const LightPillar: React.FC<LightPillarProps> = ({
       container.addEventListener('mousemove', handleMouseMove, { passive: true });
     }
 
-    // Animation loop with fixed timestep
+    // Animation loop with fixed timestep and visibility optimization
     let lastTime = performance.now();
-    const targetFPS = 60;
-    const frameTime = 1000 / targetFPS;
+    const getTargetFPS = () => isTabFocusedRef.current ? 60 : 30;
 
     const animate = (currentTime: number) => {
       if (!materialRef.current || !rendererRef.current || !sceneRef.current || !cameraRef.current) return;
 
+      // Skip rendering if not visible
+      if (!isVisibleRef.current) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      const frameTime = 1000 / getTargetFPS();
       const deltaTime = currentTime - lastTime;
 
       if (deltaTime >= frameTime) {
@@ -293,13 +301,23 @@ const LightPillar: React.FC<LightPillarProps> = ({
     };
     rafRef.current = requestAnimationFrame(animate);
 
-    // Stop animation after initial showcase to avoid continuous GPU use
-    stopTimeoutRef.current = window.setTimeout(() => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
-      }
-    }, 8000);
+    // Visibility observer - pause when not in viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisibleRef.current = entries[0]?.isIntersecting ?? true;
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(container);
+
+    // Tab focus handling - reduce FPS when tab not focused
+    const handleVisibilityChange = () => {
+      isTabFocusedRef.current = !document.hidden;
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Continuous animation - no timeout to stop
+    // Animation will run continuously for visual effect
 
     // Handle resize with debouncing
     let resizeTimeout: number | null = null;
@@ -322,6 +340,8 @@ const LightPillar: React.FC<LightPillarProps> = ({
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      observer.disconnect();
       if (interactive) {
         container.removeEventListener('mousemove', handleMouseMove);
       }

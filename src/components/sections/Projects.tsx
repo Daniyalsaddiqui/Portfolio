@@ -63,6 +63,24 @@ const projects = [
     github: "https://github.com/Daniyalsaddiqui",
     live: "#"
   },
+  {
+    title: "Social Media Automation Workflow n8n",
+    problem: "We manage the social media posts manually and it takes a lot of time.",
+    solution: "We use the webhook to get the data and post in to relavent social media platform using ai agent",
+    impact: "We save a lot of time and we can focus on other things.",
+    tech: ["MERN Stack", "n8n", "Automation","Webhook"],
+    github: "https://github.com/Daniyalsaddiqui",
+    live: "#"
+  },
+  {
+    title: "AI-Powered Blogger SEO Automation ",
+    problem: "We need to automate the process of blog management to post the high SEO post into website",
+    solution: "We create the Ai agent to make th high SEO post and publish it into website ",
+    impact: "We save a lot of time and we can focus on other things.",
+    tech: ["MERN Stack", "make.com", "Automation","Webhook"],
+    github: "https://github.com/Daniyalsaddiqui",
+    live: "#"
+  },
 ];
 
 export function Projects() {

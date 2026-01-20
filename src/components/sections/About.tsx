@@ -25,7 +25,7 @@ export function About() {
             <div className={styles.fitContent}>
               <h2 className={styles.title}>
                 <GradientText colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]} animationSpeed={3}>
-                  Driven by Problem-Solving & Scalability
+                  Building Intelligent Solutions & Scalable Systems
                 </GradientText>
               </h2>
               <div className={styles.underlineWrapper}>
@@ -33,7 +33,7 @@ export function About() {
                   className={styles.underline}
                   initial={shouldReduceMotion ? undefined : { width: "0%" }}
                   whileInView={shouldReduceMotion ? undefined : { width: "100%" }}
-                  viewport={shouldReduceMotion ? undefined : { once: false, margin: "-50px", amount: 0.3 }}
+                  viewport={shouldReduceMotion ? undefined : { once: false, margin: "0px", amount: 0.5 }}
                   transition={shouldReduceMotion ? undefined : { duration: 0.6, ease: "easeOut" }}
                 />
               </div>
@@ -45,13 +45,15 @@ export function About() {
             className={styles.content}
           >
             <p>
-              With a year of real-world experience in the MERN stack, I specialize in bridging the gap between complex backend logic 
-              and intuitive frontend experiences. My focus is on creating systems that are not just functional, but built to scale.
+              With a year of real-world experience, I bridge the gap between full-stack web development and intelligent automation. 
+              My expertise spans the MERN stack for building scalable applications and AI automation tools like n8n and make.com 
+              for creating smart workflows that transform business processes.
             </p>
             <p>
-              I believe in clean code, performance optimization, and the importance of user experience. From architecting role-based 
-              systems with Socket.io to optimizing database schemas for real estate platforms, I thrive on tackling technical challenges 
-              that have a direct impact on business growth.
+              From architecting role-based systems with Socket.io to building AI-powered automation workflows that handle content 
+              creation and social media management, I focus on delivering solutions that combine technical excellence with real business impact. 
+              Whether it's optimizing database schemas or designing intelligent automation pipelines, I thrive on challenges that require both 
+              engineering precision and creative problem-solving.
             </p>
             <div className={styles.statsGrid}>
               <div className={styles.statItem}>
@@ -59,8 +61,8 @@ export function About() {
                 <p>Real-world experience</p>
               </div>
               <div className={styles.statItem}>
-                <h4>MERN</h4>
-                <p>Primary Tech Stack</p>
+                <h4>MERN + AI</h4>
+                <p>Core Tech Expertise</p>
               </div>
             </div>
           </m.div>

@@ -20,12 +20,16 @@ export function Hero() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const run = () => setShowBackground(true);
+    // Defer LightPillar to allow LCP (hero image) to be detected first
+    const run = () => {
+      // Add extra delay to ensure LCP is captured before heavy WebGL loads
+      setTimeout(() => setShowBackground(true), 2000);
+    };
 
     if ("requestIdleCallback" in window) {
-      (window as any).requestIdleCallback(run);
+      (window as any).requestIdleCallback(run, { timeout: 3000 });
     } else {
-      setTimeout(run, 0);
+      setTimeout(run, 2000);
     }
   }, []);
 
@@ -38,7 +42,7 @@ export function Hero() {
             topColor="#5227FF"
             bottomColor="#FF9FFC"
             intensity={1.0}
-            rotationSpeed={1}
+            rotationSpeed={9}
             glowAmount={0.003}
             pillarWidth={6.0}
             pillarHeight={0.1}
@@ -71,7 +75,7 @@ export function Hero() {
                 <m.div 
                   initial={{ width: "0%" }}
                   whileInView={{ width: "100%" }}
-                  viewport={{ once: false, margin: "-50px", amount: 0.3 }}
+                  viewport={{ once: false, margin: "0px", amount: 0.5 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   className={styles.scrollUnderline} 
                 />
@@ -85,8 +89,8 @@ export function Hero() {
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
               className={styles.subtitle}
             >
-              Full-Stack Developer with 1+ year of professional experience crafting <br />
-              high-performance, user-centric web solutions that solve real-world problems.
+              Full-Stack Developer & AI Automation Specialist with 1+ year of experience <br />
+              building scalable web solutions and intelligent automation workflows that solve real-world problems.
             </m.p>
           </div>
 
@@ -113,7 +117,7 @@ export function Hero() {
           </m.div>
         </div>
 
-        {/* Right Column: Redesigned Geometric Portrait Area */}
+        {/* Right Column: Professional Image Section */}
         <m.div 
           className={styles.visualContainer}
           initial={{ opacity: 0, x: 30 }}
@@ -121,15 +125,30 @@ export function Hero() {
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          {/* Abstract Layering Shapes */}
-          <div className={styles.abstractCircle1} />
-          <div className={styles.abstractCircle2} />
-          <div className={styles.abstractArc} />
+          {/* Mobile: Clean Professional Card */}
+          <div className={styles.imageCard}>
+            <div className={styles.imageWrapper}>
+              <Image 
+                src={CONFIG.HERO_IMAGE} 
+                alt="Daniyal Saddiqui - Full-Stack Developer" 
+                className={styles.portrait}
+                width={400}
+                height={400}
+                priority
+                fetchPriority="high"
+              />
+            </div>
+          </div>
 
+          {/* Desktop: Circular design with abstract elements */}
           <div className={styles.circleFrame}>
+            <div className={styles.abstractCircle1} />
+            <div className={styles.abstractCircle2} />
+            <div className={styles.abstractArc} />
+            
             <Image 
               src={CONFIG.HERO_IMAGE} 
-              alt="Profile" 
+              alt="Daniyal Saddiqui - Full-Stack Developer" 
               className={styles.portrait}
               width={400}
               height={400}
@@ -137,8 +156,6 @@ export function Hero() {
               fetchPriority="high"
             />
           </div>
-
-          
         </m.div>
       </m.div>
     </section>

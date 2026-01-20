@@ -5,9 +5,11 @@ export function Background() {
     <div className="fixed inset-0 -z-10 overflow-hidden bg-background">
       <div
         className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] rounded-full bg-accent-primary/20 blur-[120px] animate-pulse-primary"
+        style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
       />
       <div
         className="absolute -bottom-[20%] -right-[10%] h-[60%] w-[60%] rounded-full bg-accent-secondary/20 blur-[120px] animate-pulse-secondary"
+        style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
       />
       <div 
         className="absolute inset-0 opacity-[0.03] pointer-events-none"

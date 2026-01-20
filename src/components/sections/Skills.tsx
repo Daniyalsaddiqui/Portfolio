@@ -2,7 +2,7 @@
 
 import { m, useReducedMotion } from "framer-motion";
 import { fadeIn, staggerContainer } from "@/lib/motion";
-import { Code2, Database, Layout, Settings } from "lucide-react";
+import { Code2, Database, Layout, Settings, Server, Workflow } from "lucide-react";
 import { MagicCard, MagicGrid } from "../ui/MagicCard/MagicCard";
 import GradientText from "../ui/GradientText/GradientText";
 import styles from "./Skills.module.scss";
@@ -16,7 +16,7 @@ const skillCategories = [
   },
   {
     title: "Backend",
-    icon: <Settings className="text-primary" size={24} />,
+    icon: <Server className="text-primary" size={24} />,
     skills: ["Node.js", "Express.js", "REST APIs", "Socket.io", "Authentication (JWT/OAuth)"],
     context: "Developing scalable server-side logic and real-time communication systems."
   },
@@ -27,8 +27,14 @@ const skillCategories = [
     context: "Designing efficient schemas and managing high-availability data solutions."
   },
   {
+    title: "AI Automation",
+    icon: <Workflow className="text-secondary" size={24} />,
+    skills: ["n8n", "make.com", "Webhooks", "AI Agents", "Workflow Design", "API Integration"],
+    context: "Creating intelligent automation workflows that streamline processes and boost productivity."
+  },
+  {
     title: "Tools & DevOps",
-    icon: <Code2 className="text-primary" size={24} />,
+    icon: <Code2 className="text-secondary" size={24} />,
     skills: ["Git", "Docker", "AWS / Vercel", "Testing (Jest/Cypress)", "CI/CD Pipelines"],
     context: "Streamlining development workflows and ensuring production-ready deployments."
   }
@@ -61,7 +67,7 @@ export function Skills() {
                 className={styles.underline}
                 initial={shouldReduceMotion ? undefined : { width: "0%" }}
                 whileInView={shouldReduceMotion ? undefined : { width: "100%" }}
-                viewport={shouldReduceMotion ? undefined : { once: false, margin: "-50px", amount: 0.3 }}
+                viewport={shouldReduceMotion ? undefined : { once: false, margin: "0px", amount: 0.5 }}
                 transition={shouldReduceMotion ? undefined : { duration: 0.6, ease: "easeOut" }}
               />
             </div>

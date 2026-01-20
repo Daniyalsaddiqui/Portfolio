@@ -58,4 +58,6 @@
   -webkit-background-clip: text;
   color: transparent;
   animation: gradient linear infinite;
+  will-change: background-position;
+  transform: translateZ(0);
 }
