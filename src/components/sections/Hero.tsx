@@ -58,7 +58,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.6 }}
         className={styles.inner}
       >
         {/* Left Column: Text Content */}
@@ -76,7 +76,7 @@ export function Hero() {
                   initial={{ width: "0%" }}
                   whileInView={{ width: "100%" }}
                   viewport={{ once: false, margin: "0px", amount: 0.5 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  transition={{ duration: 0.6 }}
                   className={styles.scrollUnderline} 
                 />
               </div>
@@ -86,7 +86,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-120px" }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
               className={styles.subtitle}
             >
               Full-Stack Developer & AI Automation Specialist with 1+ year of experience <br />
@@ -99,7 +99,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-120px" }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className={styles.actions}
           >
             <Magnetic>
@@ -123,7 +123,7 @@ export function Hero() {
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-120px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
         >
           {/* Mobile: Clean Professional Card */}
           <div className={styles.imageCard}>

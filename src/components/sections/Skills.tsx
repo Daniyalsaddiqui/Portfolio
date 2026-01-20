@@ -17,19 +17,19 @@ const skillCategories = [
   {
     title: "Backend",
     icon: <Server className="text-primary" size={24} />,
-    skills: ["Node.js", "Express.js", "REST APIs", "Socket.io", "Authentication (JWT/OAuth)"],
+    skills: ["Node.js", "Express.js", "JavaScript", "REST APIs", "Socket.io", "Authentication (JWT/OAuth)"],
     context: "Developing scalable server-side logic and real-time communication systems."
   },
   {
     title: "Databases",
     icon: <Database className="text-secondary" size={24} />,
-    skills: ["MongoDB", "PostgreSQL", "Mongoose", "Prisma", "Redis"],
+    skills: ["MongoDB", "PostgreSQL", "Prisma", "Redis"],
     context: "Designing efficient schemas and managing high-availability data solutions."
   },
   {
     title: "AI Automation",
     icon: <Workflow className="text-secondary" size={24} />,
-    skills: ["n8n", "make.com", "Webhooks", "AI Agents", "Workflow Design", "API Integration"],
+    skills: ["RAG workflow", "n8n", "make.com", "Webhooks", "AI Agents", "Workflow Design"],
     context: "Creating intelligent automation workflows that streamline processes and boost productivity."
   },
   {
@@ -68,7 +68,7 @@ export function Skills() {
                 initial={shouldReduceMotion ? undefined : { width: "0%" }}
                 whileInView={shouldReduceMotion ? undefined : { width: "100%" }}
                 viewport={shouldReduceMotion ? undefined : { once: false, margin: "0px", amount: 0.5 }}
-                transition={shouldReduceMotion ? undefined : { duration: 0.6, ease: "easeOut" }}
+                transition={shouldReduceMotion ? undefined : { duration: 0.6 }}
               />
             </div>
           </div>

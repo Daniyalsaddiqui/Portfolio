@@ -61,7 +61,7 @@ const projects = [
     impact: "Streamlined content workflows for an internal team of 15+ editors.",
     tech: ["MERN Stack", "React.js", "TypeScript","NodeJs","Socket.io"],
     github: "https://github.com/Daniyalsaddiqui",
-    live: "#"
+    live: "https://blogmanagement.io/"
   },
   {
     title: "Social Media Automation Workflow n8n",
@@ -111,7 +111,7 @@ export function Projects() {
                 initial={shouldReduceMotion ? undefined : { width: "0%" }}
                 whileInView={shouldReduceMotion ? undefined : { width: "100%" }}
                 viewport={shouldReduceMotion ? undefined : { once: false, margin: "-50px", amount: 0.3 }}
-                transition={shouldReduceMotion ? undefined : { duration: 0.6, ease: "easeOut" }}
+                transition={shouldReduceMotion ? undefined : { duration: 0.6 }}
               />
             </div>
           </div>

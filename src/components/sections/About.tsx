@@ -34,7 +34,7 @@ export function About() {
                   initial={shouldReduceMotion ? undefined : { width: "0%" }}
                   whileInView={shouldReduceMotion ? undefined : { width: "100%" }}
                   viewport={shouldReduceMotion ? undefined : { once: false, margin: "0px", amount: 0.5 }}
-                  transition={shouldReduceMotion ? undefined : { duration: 0.6, ease: "easeOut" }}
+                  transition={shouldReduceMotion ? undefined : { duration: 0.6 }}
                 />
               </div>
             </div>

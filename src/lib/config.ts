@@ -6,7 +6,7 @@
 export const CONFIG = {
     // Path to your resume file in the public directory
     // Example: "/resume_v2.pdf"
-    RESUME_URL: "/Daniyal-Saddiqui-CV.pdf",
+    RESUME_URL: "../../public/Daniyal-Saddiqui-Ai-Resume.pdf",
     HERO_IMAGE: "/img.png", // Next.js serves from public/ automatically
 
     // Contact details
